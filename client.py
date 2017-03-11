@@ -18,7 +18,7 @@ client_socket.connect((dst_host, dst_port))
 connection = client_socket.makefile('wb')
 try:
     camera = picamera.PiCamera()
-    camera.resolution = (1080, 720)
+    camera.resolution = (1280, 720)
     # Start a preview and let the camera warm up for 2 seconds
     camera.start_preview()
     time.sleep(2)
