@@ -3,11 +3,16 @@ import socket
 import struct
 import time
 import picamera
+import os
 
 # Connect a client socket to my_server:8000 (change my_server to the
 # hostname of your server)
 client_socket = socket.socket()
-client_socket.connect(('10.90.67.12', 8000))
+
+dst_host = os.environ['STREAM_DST_HOST']
+dst_port = int(os.environ['STREAM_DST_PORT'])
+
+client_socket.connect((dst_host, dst_port))
 
 # Make a file-like object out of the connection
 connection = client_socket.makefile('wb')
