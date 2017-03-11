@@ -11,6 +11,8 @@ client_socket = socket.socket()
 
 dst_host = os.environ['STREAM_DST_HOST']
 dst_port = int(os.environ['STREAM_DST_PORT'])
+res_x = int(os.environ['RES_X']) or 1280
+res_y = int(os.environ['RES_Y']) or 720
 
 client_socket.connect((dst_host, dst_port))
 
@@ -18,7 +20,7 @@ client_socket.connect((dst_host, dst_port))
 connection = client_socket.makefile('wb')
 try:
     camera = picamera.PiCamera()
-    camera.resolution = (1280, 720)
+    camera.resolution = (res_x, res_y)
     # Start a preview and let the camera warm up for 2 seconds
     camera.start_preview()
     time.sleep(2)
